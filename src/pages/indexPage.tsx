@@ -7,19 +7,27 @@ import { Post } from '../interfaces/blog';
 //css for fetched html string
 import '../styles/blog.css';
 //mui
-import { Grid, Container, makeStyles, Typography } from '@material-ui/core/';
+import { Grid, Container, makeStyles, Typography, Hidden } from '@material-ui/core/';
 //components
 import ArticleCard from '../components/ArticleCard';
 
 const useStyles = makeStyles(theme => ({
-  blogHero: { height: '33vh', display: 'flex', justifyContent: 'center', alignItems: 'center' },
-
+  subtitle: {
+    height: '16vh',
+    marginBottom: '8vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottom: ' 1px solid #818181',
+  },
+  section: { marginBottom: '8vh' },
   topArticleWrapper: {
     maxWidth: '100%',
     margin: '0',
     justifyContent: 'center',
   },
-  cardWrapper: {},
+  article: { maxWidth: '90vw', margin: '2rem auto' },
+  oldArticleWrapper: { maxWidth: '100%', padding: '0 10vw', margin: '0' },
 }));
 
 const IndexPage: React.FC = () => {
@@ -31,24 +39,54 @@ const IndexPage: React.FC = () => {
   return (
     <div className='blog-wrapper'>
       <main>
-        <section>
-          <Container className={classes.blogHero}>
-            <Typography variant='h2'>This is a banner</Typography>
+        <section className={classes.section}>
+          <Container className={classes.subtitle}>
+            <Typography variant='h2'>The Latest Articles</Typography>
           </Container>
-        </section>
-        <section>
+
           <Grid container className={classes.topArticleWrapper} spacing={4}>
             {!posts ? (
               <Typography variant='h2'>Fetching...</Typography>
             ) : (
               posts.map(post => (
-                <Grid item xs={12} md={6} lg={3} key={post.id} className={classes.cardWrapper}>
-                  <article style={{ maxWidth: '90vw', margin: '0 auto' }}>
+                <Grid item xs={12} md={6} lg={3} key={post.id}>
+                  <article className={classes.article}>
                     <ArticleCard {...post} />
                   </article>
                 </Grid>
               ))
             )}
+          </Grid>
+        </section>
+        <section className={classes.section}>
+          <Container className={classes.subtitle}>
+            <Typography variant='h2'>Previous Articles</Typography>
+          </Container>
+          <Grid container className={classes.oldArticleWrapper} spacing={2}>
+            <Grid item xs={12} md={7}>
+              {!posts ? (
+                <Typography variant='h2'>Fetching...</Typography>
+              ) : (
+                posts.map(post => (
+                  <Grid item xs={12} key={post.id}>
+                    <article className={classes.article}>
+                      <Typography gutterBottom variant='h6' component='h2'>
+                        {post.title}
+                      </Typography>
+                      <Typography gutterBottom>{post.date}</Typography>
+                      <Typography gutterBottom variant='body2' color='textSecondary' component='p' noWrap>
+                        {post.content.replace(/<\/?[^>]+>/gi, '')}
+                      </Typography>
+                    </article>
+                  </Grid>
+                ))
+              )}
+            </Grid>
+            <Hidden only='xs'>
+              <Grid item md={5}>
+                something
+              </Grid>
+            </Hidden>
           </Grid>
         </section>
       </main>

@@ -8,6 +8,7 @@ let theme = createMuiTheme({
     },
     primary: {
       main: '#32325d',
+      light: '#32625d',
     },
     secondary: {
       main: '#f9de61',

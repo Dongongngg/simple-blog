@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 //types
 import { Post } from '../interfaces/blog';
 //mui
@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 const ArticleCard: React.FC<Post> = (post: Post) => {
   const classes = useStyles();
+  const history = useHistory();
   return (
     <Card className={classes.wrapper}>
       <CardActionArea>
@@ -40,7 +41,13 @@ const ArticleCard: React.FC<Post> = (post: Post) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size='small' color='primary'>
+        <Button
+          size='small'
+          color='primary'
+          onClick={() => {
+            history.push('/article/' + post.id);
+          }}
+        >
           Learn More
         </Button>
         <Button size='small' color='primary'>

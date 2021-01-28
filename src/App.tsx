@@ -107,19 +107,18 @@ const dummy: Post[] = [
 ];
 const App: React.FC = () => {
   const classes = useStyles();
-
   const [posts, setPosts] = useState<Post[] | void>([]);
 
   useEffect(() => {
-    const getAll = async (): Promise<Post[] | void> => {
-      const res = await getPosts();
-      return res;
-    };
-    getAll().then(data => {
-      console.log(data);
-      setPosts(data);
-    });
-    // setPosts(dummy);
+    // const getAll = async (): Promise<Post[] | void> => {
+    //   const res = await getPosts();
+    //   return res;
+    // };
+    // getAll().then(data => {
+    //   console.log(data);
+    //   setPosts(data);
+    // });
+    setPosts(dummy);
   }, []);
 
   return (
@@ -131,6 +130,7 @@ const App: React.FC = () => {
               <Typography className={classes.title} variant='h6' noWrap>
                 Simple Blog
               </Typography>
+
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
                   <SearchIcon />

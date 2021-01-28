@@ -1,14 +1,15 @@
 //main component for blog
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-
+//context
 import { PostContext } from '../blogContext';
 //types
 import { Post } from '../interfaces/blog';
-//css
+//css for fetched html string
 import '../styles/blog.css';
 
 const IndexPage: React.FC = () => {
+  //get all posts from context
   const posts = useContext(PostContext);
   console.log(posts);
 
@@ -26,7 +27,7 @@ const IndexPage: React.FC = () => {
             <h1>Fetching...</h1>
           ) : (
             posts.map(post => (
-              <div className='article-wrapper' key={post.id}>
+              <article className='article-wrapper' key={post.id}>
                 <div className='article-title'>
                   <Link to={'/article/' + post.id}>
                     <h2 dangerouslySetInnerHTML={{ __html: post.title }}></h2>
@@ -37,8 +38,8 @@ const IndexPage: React.FC = () => {
                   <p>{post.date}</p>
                 </div>
 
-                <div dangerouslySetInnerHTML={{ __html: post.content }} className='article-content'></div>
-              </div>
+                {/* <div dangerouslySetInnerHTML={{ __html: post.content }} className='article-content'></div> */}
+              </article>
             ))
           )}
         </section>

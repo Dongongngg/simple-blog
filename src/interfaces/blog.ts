@@ -1,19 +1,19 @@
 export interface Post {
-  id: number;
+  id: string;
   title: string;
-  authorId: number;
+  authorId: string;
   content: string;
   date: string;
 }
 export interface rawPost {
-  id: number;
-  author: number;
+  id: string;
+  author: string;
   date: string;
   title: { rendered: string };
   content: { rendered: string };
 }
 export interface Author {
-  id: number;
+  id: string;
   name: string;
 }
 

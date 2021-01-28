@@ -22,14 +22,16 @@ const useStyles = makeStyles({
 const ArticlePage: React.FC = () => {
   const { articleId }: param = useParams();
   const posts = useContext(PostContext);
-  console.log(posts);
 
-  const [crtPost, setCrtPost] = useState<void | Post>();
+  const [crtPost, setCrtPost] = useState<Post>();
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    if (posts) {
-      const post = posts.find(e => e.id === articleId);
-      if (post) {
+    if (posts && posts.length > 0) {
+      const post = posts.find(e => e.id == articleId);
+      if (!post) {
+        setNotFound(true);
+      } else {
         setCrtPost(post);
       }
     }
@@ -38,16 +40,24 @@ const ArticlePage: React.FC = () => {
   //mui style
   const classes = useStyles();
 
+  if (notFound) {
+    return (
+      <div className={classes.root}>
+        <Typography>Not Found</Typography>
+      </div>
+    );
+  }
   return (
     <div className={classes.root}>
-      <Typography variant='h6'>this is a article {articleId}</Typography>
-      {crtPost ? (
+      <Typography variant='h3'>this is a article {articleId}</Typography>
+
+      {!crtPost ? (
+        <h1>Loading...</h1>
+      ) : (
         <article>
           <Typography dangerouslySetInnerHTML={{ __html: crtPost.title }}></Typography>
           <Typography dangerouslySetInnerHTML={{ __html: crtPost.content }}></Typography>
         </article>
-      ) : (
-        <h1>Can not find this article</h1>
       )}
     </div>
   );

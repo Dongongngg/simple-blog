@@ -3,10 +3,10 @@ import { Link, useHistory } from 'react-router-dom';
 //types
 import { Post } from '../interfaces/blog';
 //mui
-import { Container, makeStyles, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia, Button } from '@material-ui/core/';
+import { Paper, makeStyles, Typography, Card, CardActions, CardContent, Button } from '@material-ui/core/';
 
 const useStyles = makeStyles(theme => ({
-  wrapper: {},
+  wrapper: { padding: '12px' },
   contentWrapper: {
     padding: theme.spacing(1),
   },
@@ -24,9 +24,8 @@ const ArticleCard: React.FC<Post> = (post: Post) => {
   const classes = useStyles();
   const history = useHistory();
   return (
-    <Card className={classes.wrapper}>
-      <CardActionArea>
-        {/* <CardMedia component='img' alt='Contemplative Reptile' height='140' title='Contemplative Reptile' /> */}
+    <Card elevation={3}>
+      <Paper className={classes.wrapper}>
         <CardContent className={classes.contentWrapper}>
           <Link to={'/article/' + post.id}>
             <Typography gutterBottom variant='h5' component='h2'>
@@ -34,13 +33,13 @@ const ArticleCard: React.FC<Post> = (post: Post) => {
             </Typography>
           </Link>
 
-          <Typography gutterBottom>{post.date}</Typography>
-          <Typography variant='body2' color='textSecondary' component='p' className={classes.content}>
+          <Typography gutterBottom variant='subtitle1'>
+            {post.date.substring(0, 10)}
+          </Typography>
+          <Typography gutterBottom variant='body1' component='p' className={classes.content} color='textSecondary'>
             {post.content.replace(/<\/?[^>]+>/gi, '')}
           </Typography>
         </CardContent>
-      </CardActionArea>
-      <CardActions>
         <Button
           size='small'
           color='primary'
@@ -53,7 +52,7 @@ const ArticleCard: React.FC<Post> = (post: Post) => {
         <Button size='small' color='primary'>
           Share
         </Button>
-      </CardActions>
+      </Paper>
     </Card>
   );
 };

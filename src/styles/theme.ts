@@ -3,21 +3,32 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 let theme = createMuiTheme({
   palette: {
     text: {
-      primary: '#32325d',
-      secondary: '',
+      primary: 'rgba(0, 0, 0, 0.87)',
+      secondary: 'rgba(0, 0, 0, 0.54)',
     },
     primary: {
       main: '#32325d',
-      light: '#32625d',
+      light: '#636090',
     },
     secondary: {
-      main: '#f9de61',
+      main: '#00C895',
     },
     background: {
       default: '#f6f9fc',
     },
   },
-
+  typography: {
+    fontSize: 16,
+    h2: {
+      fontWeight: 500,
+    },
+    h5: {
+      fontWeight: 500,
+    },
+    body1: { fontFamily: "'Merriweather', serif" },
+    body2: { fontFamily: "'Merriweather', serif" },
+    fontFamily: [" 'Fraunces', serif", "'Merriweather', serif"].join(','),
+  },
   spacing: 8,
 });
 

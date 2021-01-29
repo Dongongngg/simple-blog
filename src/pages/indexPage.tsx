@@ -22,8 +22,8 @@ const useStyles = makeStyles(theme => ({
   },
   section: { marginBottom: '8vh' },
   topArticleWrapper: {
-    maxWidth: '100%',
-    margin: '0',
+    maxWidth: '90%',
+    margin: '0 auto',
     justifyContent: 'center',
   },
   article: { maxWidth: '90vw', margin: '2rem auto' },
@@ -41,10 +41,12 @@ const IndexPage: React.FC = () => {
       <main>
         <section className={classes.section}>
           <Container className={classes.subtitle}>
-            <Typography variant='h2'>The Latest Articles</Typography>
+            <Typography variant='h2' color='primary'>
+              Latest Articles
+            </Typography>
           </Container>
 
-          <Grid container className={classes.topArticleWrapper} spacing={4}>
+          <Grid container className={classes.topArticleWrapper} spacing={2}>
             {!posts ? (
               <Typography variant='h2'>Fetching...</Typography>
             ) : (
@@ -60,7 +62,9 @@ const IndexPage: React.FC = () => {
         </section>
         <section className={classes.section}>
           <Container className={classes.subtitle}>
-            <Typography variant='h2'>Previous Articles</Typography>
+            <Typography variant='h2' color='primary'>
+              More Articles
+            </Typography>
           </Container>
           <Grid container className={classes.oldArticleWrapper} spacing={2}>
             <Grid item xs={12} md={7}>
@@ -73,8 +77,10 @@ const IndexPage: React.FC = () => {
                       <Typography gutterBottom variant='h6' component='h2'>
                         {post.title}
                       </Typography>
-                      <Typography gutterBottom>{post.date}</Typography>
-                      <Typography gutterBottom variant='body2' color='textSecondary' component='p' noWrap>
+                      <Typography gutterBottom variant='subtitle1'>
+                        {post.date.substring(0, 10)}
+                      </Typography>
+                      <Typography gutterBottom variant='body1' color='textSecondary' component='p' noWrap>
                         {post.content.replace(/<\/?[^>]+>/gi, '')}
                       </Typography>
                     </article>

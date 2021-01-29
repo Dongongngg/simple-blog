@@ -7,8 +7,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     backdrop: {
       zIndex: theme.zIndex.drawer + 1,
-      color: '#fff',
+      color: 'primary',
       backgroundColor: '#E5F4F3',
+      opacity: '0.5 !important',
     },
   }),
 );

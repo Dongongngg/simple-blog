@@ -12,8 +12,13 @@ import { Grid, Container, makeStyles, Typography, Hidden, List, ListItem, ListIt
 //components
 import ArticleCard from '../components/ArticleCard';
 import LoadingSign from '../components/LoadingSign';
+import BlogSVG from '../components/BlogSVG';
 
 const useStyles = makeStyles({
+  hero: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
   subtitle: {
     height: '16vh',
     maxWidth: '75vw',
@@ -21,7 +26,7 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottom: ' 1px solid #818181',
+    borderBottom: ' 1px solid #CCCCCC',
     '@media (max-width: 960px)': {
       marginBottom: '4vh',
       maxWidth: '90vw',
@@ -46,7 +51,7 @@ const useStyles = makeStyles({
     overflow: 'hidden',
   },
   oldArticleWrapper: { maxWidth: '100%', padding: '0 10vw', margin: '0' },
-  archiveWrapper: { borderLeft: '1px solid #818181' },
+  archiveWrapper: { borderLeft: '1px solid #CCCCCC' },
 });
 
 const IndexPage: React.FC = () => {
@@ -68,6 +73,10 @@ const IndexPage: React.FC = () => {
           <LoadingSign />
         ) : (
           <>
+            <section className={classes.hero}>
+              <BlogSVG />
+            </section>
+
             <section className={classes.section}>
               <Container className={classes.subtitle}>
                 <Typography variant='h2' color='primary'>
@@ -116,7 +125,7 @@ const IndexPage: React.FC = () => {
                     </Grid>
                   ))}
                 </Grid>
-                <Hidden only='xs'>
+                <Hidden only={['xs', 'sm']}>
                   <Grid item md={4} className={classes.archiveWrapper} style={{ padding: '0 2vw' }}>
                     <Typography gutterBottom variant='h6' component='h2'>
                       Archive
@@ -135,7 +144,6 @@ const IndexPage: React.FC = () => {
           </>
         )}
       </main>
-      <footer>footer</footer>
     </div>
   );
 };

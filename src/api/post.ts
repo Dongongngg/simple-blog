@@ -3,7 +3,7 @@ import { Post, rawPost } from '../interfaces/blog';
 
 //https://hammer.forexco.com.au/wp-json/wp/v2/posts?_embed
 
-//get all posts
+//  get all posts
 export const getPosts = async (): Promise<Post[] | void> => {
   try {
     const res = await axios.get('https://hammer.forexco.com.au/wp-json/wp/v2/posts?_embed');

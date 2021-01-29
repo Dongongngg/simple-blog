@@ -7,6 +7,8 @@ import { Post } from '../interfaces/blog';
 //mui
 import { makeStyles, Typography, Fab, Tooltip } from '@material-ui/core/';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+//component
+import LoadingSign from '../components/LoadingSign';
 type param = {
   articleId: string;
 };
@@ -56,28 +58,29 @@ const ArticlePage: React.FC = () => {
   }
   return (
     <div className={classes.root}>
-      <Tooltip title={<h2>Latest Articles</h2>} placement='left'>
-        <Fab
-          className={classes.backBtn}
-          color='primary'
-          onClick={() => {
-            history.push('/');
-          }}
-        >
-          <NavigateBeforeIcon fontSize='large' />
-          <Typography variant='button'></Typography>
-        </Fab>
-      </Tooltip>
-
-      <Typography variant='h3'>this is a article {articleId}</Typography>
-
       {!crtPost ? (
-        <h1>Loading...</h1>
+        <LoadingSign />
       ) : (
-        <article>
-          <Typography dangerouslySetInnerHTML={{ __html: crtPost.title }}></Typography>
-          <Typography dangerouslySetInnerHTML={{ __html: crtPost.content }}></Typography>
-        </article>
+        <>
+          <Tooltip title={<h2>Latest Articles</h2>} placement='left'>
+            <Fab
+              className={classes.backBtn}
+              color='primary'
+              onClick={() => {
+                history.push('/');
+              }}
+            >
+              <NavigateBeforeIcon fontSize='large' />
+              <Typography variant='button'></Typography>
+            </Fab>
+          </Tooltip>
+
+          <Typography variant='h3'>this is a article {articleId}</Typography>
+          <article>
+            <Typography dangerouslySetInnerHTML={{ __html: crtPost.title }}></Typography>
+            <Typography dangerouslySetInnerHTML={{ __html: crtPost.content }}></Typography>
+          </article>
+        </>
       )}
     </div>
   );

@@ -48,6 +48,7 @@ a:not([class]) {
   text-decoration-skip-ink: auto;
   text-decoration: none;
 }
+a,
 a:active,
 a:visited {
   color: inherit;

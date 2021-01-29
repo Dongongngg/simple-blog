@@ -23,6 +23,11 @@ const useStyles = makeStyles(theme => ({
 const ArticleCard: React.FC<Post> = (post: Post) => {
   const classes = useStyles();
   const history = useHistory();
+
+  const handleRedirect = (ID: string) => {
+    history.push('/article/' + ID);
+  };
+
   return (
     <Card elevation={3}>
       <Paper className={classes.wrapper}>
@@ -40,13 +45,7 @@ const ArticleCard: React.FC<Post> = (post: Post) => {
             {post.content.replace(/<\/?[^>]+>/gi, '')}
           </Typography>
         </CardContent>
-        <Button
-          size='small'
-          color='primary'
-          onClick={() => {
-            history.push('/article/' + post.id);
-          }}
-        >
+        <Button size='small' color='primary' onClick={() => handleRedirect(post.id)}>
           Learn More
         </Button>
         <Button size='small' color='primary'>

@@ -1,6 +1,10 @@
 # Simple Blog
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A blog to display articles
+
+## Tech
+
+React | TypeScript | Material UI | Axios
 
 ## Available Scripts
 
@@ -18,3 +22,5 @@ Launches the test runner in the interactive watch mode.
 ### `npm run build`
 
 Builds the app for production to the `build` folder.
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

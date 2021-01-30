@@ -1,35 +1,46 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 //context
 import { PostContext } from '../blogContext';
 //type
 import { Post } from '../interfaces/blog';
 //mui
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-
+import { makeStyles, Typography, Fab, Tooltip } from '@material-ui/core/';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+//component
+import LoadingSign from '../components/LoadingSign';
 type param = {
   articleId: string;
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     textAlign: 'center',
   },
-});
+  backBtn: {
+    position: 'fixed',
+    marginRight: theme.spacing(2),
+    right: theme.spacing(2),
+    bottom: theme.spacing(2),
+  },
+}));
 
 const ArticlePage: React.FC = () => {
   const { articleId }: param = useParams();
-  const posts = useContext(PostContext);
-  console.log(posts);
+  const history = useHistory();
 
-  const [crtPost, setCrtPost] = useState<void | Post>();
+  const posts = useContext(PostContext);
+
+  const [crtPost, setCrtPost] = useState<Post>();
+  const [notFound, setNotFound] = useState<boolean>(false);
 
   useEffect(() => {
-    if (posts) {
-      const post = posts.find(e => e.id === articleId);
-      if (post) {
+    if (posts && posts.length > 0) {
+      const post = posts.find(e => e.id == articleId);
+      if (!post) {
+        setNotFound(true);
+      } else {
         setCrtPost(post);
       }
     }
@@ -38,16 +49,38 @@ const ArticlePage: React.FC = () => {
   //mui style
   const classes = useStyles();
 
+  if (notFound) {
+    return (
+      <div className={classes.root}>
+        <Typography>Not Found</Typography>
+      </div>
+    );
+  }
   return (
     <div className={classes.root}>
-      <Typography variant='h6'>this is a article {articleId}</Typography>
-      {crtPost ? (
-        <article>
-          <Typography dangerouslySetInnerHTML={{ __html: crtPost.title }}></Typography>
-          <Typography dangerouslySetInnerHTML={{ __html: crtPost.content }}></Typography>
-        </article>
+      {!crtPost ? (
+        <LoadingSign />
       ) : (
-        <h1>Can not find this article</h1>
+        <>
+          <Tooltip title={<h2>Latest Articles</h2>} placement='left'>
+            <Fab
+              className={classes.backBtn}
+              color='primary'
+              onClick={() => {
+                history.push('/');
+              }}
+            >
+              <NavigateBeforeIcon fontSize='large' />
+              <Typography variant='button'></Typography>
+            </Fab>
+          </Tooltip>
+
+          <Typography variant='h3'>this is a article {articleId}</Typography>
+          <article>
+            <Typography dangerouslySetInnerHTML={{ __html: crtPost.title }}></Typography>
+            <Typography dangerouslySetInnerHTML={{ __html: crtPost.content }}></Typography>
+          </article>
+        </>
       )}
     </div>
   );

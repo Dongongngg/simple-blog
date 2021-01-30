@@ -1,30 +1,35 @@
-export interface Post {
-  id: string;
-  title: string;
-  authorId: string;
-  content: string;
-  date: string;
-}
-export interface PostContent {
-  id: string;
-  title: string;
-  content: string;
-  date: string;
-  author?: Author;
-}
 export interface rawPost {
   id: string;
-  author: string;
   date: string;
   title: { rendered: string };
+  excerpt: { rendered: string };
   content: { rendered: string };
-}
-export interface Author {
-  id: string;
-  name: string;
+  _embedded: _embedded;
 }
 
-export interface Fox {
-  image: string;
-  link: string;
+type _embedded = {
+  author: Author[];
+  'wp:featuredmedia': any[];
+};
+
+type Author = {
+  id: string;
+  name: string;
+  url: string;
+};
+export interface Post {
+  id: string;
+  date: string;
+  authors: Author[];
+  title: string;
+  excerpt: string;
+  content: string;
+  featuredMedia: FeaturedMedia;
 }
+type FeaturedMedia = {
+  thumbnail: string;
+  medium: string;
+  medium_large: string;
+  large: string;
+  full: string;
+};

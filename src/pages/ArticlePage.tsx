@@ -3,9 +3,9 @@ import { useParams, useHistory } from 'react-router-dom';
 //context
 import { PostContext } from '../blogContext';
 //type
-import { PostContent } from '../interfaces/blog';
+import { Post } from '../interfaces/blog';
 //mui
-import { makeStyles, Typography, Fab, Tooltip, Container } from '@material-ui/core/';
+import { makeStyles, Typography, Fab, Tooltip, Container, Button } from '@material-ui/core/';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 //component
 import LoadingSign from '../components/LoadingSign';
@@ -37,7 +37,7 @@ const ArticlePage: React.FC = () => {
   //get data from context
   const posts = useContext(PostContext);
 
-  const [crtPost, setCrtPost] = useState<PostContent>();
+  const [crtPost, setCrtPost] = useState<Post>();
   const [notFound, setNotFound] = useState<boolean>(false);
 
   useEffect(() => {
@@ -57,7 +57,15 @@ const ArticlePage: React.FC = () => {
   if (notFound) {
     return (
       <main className={classes.root}>
-        <Typography variant='h3'>Not Found</Typography>
+        <Container
+          maxWidth='md'
+          style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}
+        >
+          <Typography variant='h3'>Not Found...</Typography>
+          <Button variant='outlined' size='small' onClick={() => history.push('/')}>
+            Back to blog
+          </Button>
+        </Container>
       </main>
     );
   }
@@ -89,7 +97,10 @@ const ArticlePage: React.FC = () => {
                 month: 'long',
                 day: 'numeric',
               })}{' '}
-              By <b>{crtPost.author ? crtPost.author.name : 'Uknown'}</b>
+              By{' '}
+              {crtPost.authors.map(author => (
+                <b key={author.id}>{author.name}</b>
+              ))}
             </Typography>
             <Typography
               dangerouslySetInnerHTML={{ __html: crtPost.content }}

@@ -17,6 +17,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     borderBottom: `1px solid ${theme.palette.background.default}`,
+    '@media(max-width: 960px)': {
+      padding: '2vh 0',
+    },
   },
   navWrapperSmall: {
     padding: '2vh 0',

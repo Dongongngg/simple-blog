@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 //context
 import { PostContext } from '../blogContext';
 //types
-import { Post } from '../interfaces/blog';
+import { PostContent } from '../interfaces/blog';
 //css for fetched html string
 import '../styles/blog.css';
 //mui

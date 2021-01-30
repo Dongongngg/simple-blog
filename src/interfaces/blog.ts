@@ -5,6 +5,13 @@ export interface Post {
   content: string;
   date: string;
 }
+export interface PostContent {
+  id: string;
+  title: string;
+  content: string;
+  date: string;
+  author?: Author;
+}
 export interface rawPost {
   id: string;
   author: string;

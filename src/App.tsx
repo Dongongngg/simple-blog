@@ -9,14 +9,14 @@ import Header from './components/Header';
 //api
 import { getPosts } from './api/post';
 //types
-import { Post } from './interfaces/blog';
+import { PostContent } from './interfaces/blog';
 //context
 import { PostContext } from './blogContext';
 import { CssBaseline } from '@material-ui/core/';
-const dummy: Post[] = [
+const dummy: PostContent[] = [
   {
     id: '1',
-    authorId: '2',
+    author: { id: '2', name: 'James' },
     date: '2021-01-25T13:47:00',
     title: 'Forex Talking Points Starting The New Month',
     content:
@@ -24,7 +24,7 @@ const dummy: Post[] = [
   },
   {
     id: '2',
-    authorId: '4',
+    author: { id: '1', name: 'Lee' },
     date: '2021-01-25T13:47:00',
     title: 'Technical Forex Outlook &#8211; 25.01.2021',
     content:
@@ -32,7 +32,7 @@ const dummy: Post[] = [
   },
   {
     id: '3',
-    authorId: '2',
+    author: { id: '1', name: 'Lee' },
     date: '2021-01-25T13:47:00',
     title: 'Forex Talking Points Starting The New Month',
     content:
@@ -40,7 +40,7 @@ const dummy: Post[] = [
   },
   {
     id: '4',
-    authorId: '2',
+    author: { id: '1', name: 'Lee' },
     date: '2021-01-25T13:47:00',
     title: 'Forex Talking Points Starting The New Month',
     content:
@@ -48,18 +48,18 @@ const dummy: Post[] = [
   },
 ];
 const App: React.FC = () => {
-  const [posts, setPosts] = useState<Post[] | void>([]);
+  const [posts, setPosts] = useState<PostContent[] | void>([]);
 
   useEffect(() => {
-    // const getAll = async (): Promise<Post[] | void> => {
-    //   const res = await getPosts();
-    //   return res;
-    // };
-    // getAll().then(data => {
-    //   console.log(data);
-    //   setPosts(data);
-    // });
-    setPosts(dummy);
+    const getAll = async (): Promise<PostContent[] | void> => {
+      const res = await getPosts();
+      return res;
+    };
+    getAll().then(data => {
+      console.log(data);
+      setPosts(data);
+    });
+    // setPosts(dummy);
   }, []);
 
   return (

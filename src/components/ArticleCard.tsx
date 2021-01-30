@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 //types
-import { Post } from '../interfaces/blog';
+import { PostContent } from '../interfaces/blog';
 //mui
-import { Paper, makeStyles, Typography, Card, CardActions, CardContent, Button } from '@material-ui/core/';
+import { Paper, makeStyles, Typography, Card, CardContent, Button } from '@material-ui/core/';
 
 const useStyles = makeStyles(theme => ({
   wrapper: { padding: '12px' },
@@ -16,11 +16,9 @@ const useStyles = makeStyles(theme => ({
     textOverflow: 'ellipsis',
     maxHeight: '33vh',
   },
-  titleWrapper: {},
-  title: {},
 }));
 
-const ArticleCard: React.FC<Post> = (post: Post) => {
+const ArticleCard: React.FC<PostContent> = (post: PostContent) => {
   const classes = useStyles();
   const history = useHistory();
 

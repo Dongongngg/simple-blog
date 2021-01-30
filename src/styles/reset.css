@@ -85,3 +85,5 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+/* for html string fetched from api */

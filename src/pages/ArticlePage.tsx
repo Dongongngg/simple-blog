@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     '& .MuiTypography-root > p,h2,h3': { paddingBottom: theme.spacing(3) },
+    '& .MuiTypography-root > p > a': { fontStyle: 'italic' },
   },
   backBtn: {
     position: 'fixed',
@@ -82,8 +83,13 @@ const ArticlePage: React.FC = () => {
           {/* <Typography variant='h3'>this is a article {articleId}</Typography> */}
           <article>
             <Typography dangerouslySetInnerHTML={{ __html: crtPost.title }} variant='h3' className={classes.title}></Typography>
-            <Typography variant='subtitle1' className={classes.meta}>
-              {crtPost.date.substring(0, 10)} By {crtPost.author ? crtPost.author.name : 'Known'}
+            <Typography variant='subtitle2' className={classes.meta}>
+              {new Date(crtPost.date).toLocaleString('en-AU', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}{' '}
+              By <b>{crtPost.author ? crtPost.author.name : 'Uknown'}</b>
             </Typography>
             <Typography
               dangerouslySetInnerHTML={{ __html: crtPost.content }}

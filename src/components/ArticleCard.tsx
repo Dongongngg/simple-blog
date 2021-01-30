@@ -6,7 +6,9 @@ import { PostContent } from '../interfaces/blog';
 import { Paper, makeStyles, Typography, Card, CardContent, Button } from '@material-ui/core/';
 
 const useStyles = makeStyles(theme => ({
-  wrapper: { padding: '12px' },
+  wrapper: {
+    padding: '12px',
+  },
   contentWrapper: {
     padding: theme.spacing(1),
   },
@@ -32,12 +34,16 @@ const ArticleCard: React.FC<PostContent> = (post: PostContent) => {
         <CardContent className={classes.contentWrapper}>
           <Link to={'/article/' + post.id}>
             <Typography gutterBottom variant='h5' component='h2'>
-              {post.title}
+              {post.title.replace('&#8211;', ' - ')}
             </Typography>
           </Link>
 
           <Typography gutterBottom variant='subtitle1'>
-            {post.date.substring(0, 10)}
+            {new Date(post.date).toLocaleString('en-AU', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
           </Typography>
           <Typography gutterBottom variant='body1' component='p' className={classes.content} color='textSecondary'>
             {post.content.replace(/<\/?[^>]+>/gi, '')}

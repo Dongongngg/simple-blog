@@ -9,6 +9,7 @@ export const getPosts = async (): Promise<PostContent[] | void> => {
     const rawContents = await axios.get('https://hammer.forexco.com.au/wp-json/wp/v2/posts?_embed');
     const rawAuthors = await axios.get('https://hammer.forexco.com.au/wp-json/wp/v2/users');
     //destructure data
+    //get each post
     const posts: Post[] = rawContents.data.map((e: rawPost) => ({
       id: e.id,
       title: e.title.rendered,
@@ -16,13 +17,12 @@ export const getPosts = async (): Promise<PostContent[] | void> => {
       content: e.content.rendered,
       date: e.date,
     }));
-
+    // all authors
     const authors: Author[] = rawAuthors.data.map((e: Author) => ({
       id: e.id,
       name: e.name,
     }));
-    console.log(authors, 'authors');
-
+    //  post with its author
     const postContent: PostContent[] = posts.map((e: Post) => ({
       id: e.id,
       title: e.title,
@@ -30,8 +30,8 @@ export const getPosts = async (): Promise<PostContent[] | void> => {
       date: e.date,
       author: authors.find(author => e.authorId === author.id),
     }));
+    console.log(postContent);
 
-    //return contents with author
     return postContent;
   } catch (err) {
     console.error(err);

@@ -86,4 +86,7 @@ select {
   }
 }
 
-/* for html string fetched from api */
+/* main tag*/
+main {
+  min-height: 100vh;
+}

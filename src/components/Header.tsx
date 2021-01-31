@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   title: {
+    fontFamily: "'Dancing Script', cursive",
     flexGrow: 1,
     display: 'none',
     [theme.breakpoints.up('sm')]: {

@@ -9,6 +9,8 @@ import { makeStyles, Typography, Fab, Tooltip, Container, Button } from '@materi
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 //component
 import LoadingSign from '../components/LoadingSign';
+import Archive from '../components/Archive';
+
 type param = {
   articleId: string;
 };
@@ -88,19 +90,21 @@ const ArticlePage: React.FC = () => {
             </Fab>
           </Tooltip>
 
-          {/* <Typography variant='h3'>this is a article {articleId}</Typography> */}
           <article>
             <Typography dangerouslySetInnerHTML={{ __html: crtPost.title }} variant='h3' className={classes.title}></Typography>
+            <Typography variant='subtitle1' className={classes.meta}>
+              {crtPost.authors.map(author => (
+                <a key={author.id} href={author.link}>
+                  <b>{author.name}</b>
+                </a>
+              ))}
+            </Typography>
             <Typography variant='subtitle2' className={classes.meta}>
               {new Date(crtPost.date).toLocaleString('en-AU', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
-              })}{' '}
-              By{' '}
-              {crtPost.authors.map(author => (
-                <b key={author.id}>{author.name}</b>
-              ))}
+              })}
             </Typography>
             <Typography
               dangerouslySetInnerHTML={{ __html: crtPost.content }}

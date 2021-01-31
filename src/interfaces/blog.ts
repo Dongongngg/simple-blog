@@ -15,7 +15,7 @@ type _embedded = {
 type Author = {
   id: string;
   name: string;
-  url: string;
+  link: string;
 };
 export interface Post {
   id: string;

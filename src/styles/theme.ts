@@ -19,6 +19,7 @@ let theme = createMuiTheme({
   },
   typography: {
     fontSize: 16,
+    h1: { fontFamily: "'Dancing Script', cursive" },
     h2: {
       fontWeight: 500,
     },
@@ -27,7 +28,7 @@ let theme = createMuiTheme({
     },
     body1: { fontFamily: "'Merriweather', serif" },
     body2: { fontFamily: "'Merriweather', serif" },
-    fontFamily: [" 'Fraunces', serif", "'Merriweather', serif"].join(','),
+    fontFamily: [" 'Fraunces', serif", "'Merriweather', serif", "'Dancing Script', cursive"].join(','),
   },
   spacing: 8,
 });

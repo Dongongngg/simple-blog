@@ -17,7 +17,7 @@ const dummy: Post[] = [
   {
     id: '1',
     date: '2021-01-25T13:47:00',
-    authors: [{ id: '2', name: 'James', url: 'asdasdadsad' }],
+    authors: [{ id: '2', name: 'James', link: 'asdasdadsad' }],
     title: 'Forex Talking Points Starting The New Month',
     excerpt:
       ' <p>USD There were many events last week that saw the USD being supported, asthe 1.9 trillion Biden Stimulus package, which is being referred to as the ‘American Rescue Plan’, saw equities fall and move assets back into the dollar. This also saw gold fall as the USD appreciated. Another event that affected the USD was [&hellip;]</p>\n',
@@ -34,7 +34,7 @@ const dummy: Post[] = [
   {
     id: '2',
     date: '2021-01-25T13:47:00',
-    authors: [{ id: '2', name: 'James', url: 'asdasdadsad' }],
+    authors: [{ id: '2', name: 'James', link: 'asdasdadsad' }],
     title: 'Forex Talking Points Starting The New Month',
     excerpt:
       ' <p>This article is sponsored by Tonisignals. In financial markets, high and low points formed over quarterly and annual periods typically form significant levels for future movements. These levels are typically used by institutions as areas of interest for significant dealing, whether it be buying or selling. We will walk you through how to find these [&hellip;]</p>\n',
@@ -51,7 +51,7 @@ const dummy: Post[] = [
   {
     id: '3',
     date: '2021-01-25T13:47:00',
-    authors: [{ id: '2', name: 'James', url: 'asdasdadsad' }],
+    authors: [{ id: '2', name: 'James', link: 'asdasdadsad' }],
     title: 'Forex Talking Points Starting The New Month',
     excerpt:
       ' <p>This article is sponsored by Tonisignals. In financial markets, high and low points formed over quarterly and annual periods typically form significant levels for future movements. These levels are typically used by institutions as areas of interest for significant dealing, whether it be buying or selling. We will walk you through how to find these [&hellip;]</p>\n',
@@ -68,7 +68,7 @@ const dummy: Post[] = [
   {
     id: '4',
     date: '2021-01-25T13:47:00',
-    authors: [{ id: '2', name: 'James', url: 'asdasdadsad' }],
+    authors: [{ id: '2', name: 'James', link: 'asdasdadsad' }],
     title: 'Forex Talking Points Starting The New Month',
     excerpt:
       ' <p>This article is sponsored by Tonisignals. In financial markets, high and low points formed over quarterly and annual periods typically form significant levels for future movements. These levels are typically used by institutions as areas of interest for significant dealing, whether it be buying or selling. We will walk you through how to find these [&hellip;]</p>\n',
@@ -87,15 +87,15 @@ const App: React.FC = () => {
   const [posts, setPosts] = useState<Post[] | void>([]);
 
   useEffect(() => {
-    const getAll = async (): Promise<Post[] | void> => {
-      const res = await getPosts();
-      return res;
-    };
-    getAll().then(data => {
-      console.log(data);
-      setPosts(data);
-    });
-    // setPosts(dummy);
+    // const getAll = async (): Promise<Post[] | void> => {
+    //   const res = await getPosts();
+    //   return res;
+    // };
+    // getAll().then(data => {
+    //   console.log(data);
+    //   setPosts(data);
+    // });
+    setPosts(dummy);
   }, []);
 
   return (

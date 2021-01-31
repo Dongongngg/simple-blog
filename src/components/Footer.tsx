@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     borderBottom: `1px solid ${theme.palette.background.default}`,
   },
+  logo: { display: 'inline-block', fontFamily: "'Dancing Script', cursive" },
   nav: { display: 'inline-block' },
   socialWrapper: {
     padding: '1vh 0',
@@ -66,7 +67,7 @@ const Footer: React.FC = () => {
     <footer className={classes.footerWrapper}>
       <Hidden only={['md', 'lg', 'xl']}>
         <Container disableGutters maxWidth='lg' className={classes.navWrapperSmall}>
-          <Typography variant='h4' className={classes.nav}>
+          <Typography variant='h4' className={classes.logo}>
             SimpleBlog
           </Typography>
         </Container>
@@ -80,7 +81,7 @@ const Footer: React.FC = () => {
           Advertise
         </Typography>
         <Hidden only={['xs', 'sm']}>
-          <Typography variant='h4' className={classes.nav}>
+          <Typography variant='h4' className={classes.logo}>
             SimpleBlog
           </Typography>
         </Hidden>

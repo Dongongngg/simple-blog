@@ -56,7 +56,7 @@ const ArticleCard: React.FC<Post> = (post: Post) => {
           <Typography gutterBottom variant='subtitle1'>
             {new Date(post.date).toLocaleString('en-AU', {
               year: 'numeric',
-              month: 'long',
+              month: 'short',
               day: 'numeric',
             })}
           </Typography>

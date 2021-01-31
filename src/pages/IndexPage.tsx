@@ -103,7 +103,7 @@ const IndexPage: React.FC = () => {
                   SimpleBlog
                 </Typography>
                 <Typography variant='subtitle1' style={{ fontStyle: 'italic', padding: '1vh' }}>
-                  Everyday financial post.
+                  Everyday forex post.
                 </Typography>
               </Container>
               <Container className={classes.subtitleWrapper}>
@@ -157,7 +157,7 @@ const IndexPage: React.FC = () => {
                               <Typography gutterBottom variant='subtitle1'>
                                 {new Date(post.date).toLocaleString('en-AU', {
                                   year: 'numeric',
-                                  month: 'long',
+                                  month: 'short',
                                   day: 'numeric',
                                 })}
                               </Typography>

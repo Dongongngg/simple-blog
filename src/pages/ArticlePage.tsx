@@ -5,7 +5,7 @@ import { PostContext } from '../blogContext';
 //type
 import { Post } from '../interfaces/blog';
 //mui
-import { makeStyles, Typography, Fab, Tooltip, Container, Button } from '@material-ui/core/';
+import { makeStyles, Typography, Fab, Tooltip, Container, Button, Hidden } from '@material-ui/core/';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 //component
 import LoadingSign from '../components/LoadingSign';
@@ -27,8 +27,10 @@ const useStyles = makeStyles(theme => ({
     right: theme.spacing(2),
     bottom: theme.spacing(2),
   },
+  articleWrapper: { padding: '5vh 0' },
   title: { padding: `${theme.spacing(3)}px 0` },
-  meta: { paddingBottom: theme.spacing(3) },
+  meta: { paddingBottom: theme.spacing(1), '&:last-of-type': { paddingBottom: theme.spacing(3) } },
+  featuredMedia: { paddingBottom: `${theme.spacing(5)}px` },
   content: { padding: `${theme.spacing(3)}px 0`, borderTop: '1px solid #CCCCCC' },
 }));
 
@@ -90,22 +92,39 @@ const ArticlePage: React.FC = () => {
             </Fab>
           </Tooltip>
 
-          <article>
+          <article className={classes.articleWrapper}>
             <Typography dangerouslySetInnerHTML={{ __html: crtPost.title }} variant='h3' className={classes.title}></Typography>
             <Typography variant='subtitle1' className={classes.meta}>
-              {crtPost.authors.map(author => (
-                <a key={author.id} href={author.link}>
-                  <b>{author.name}</b>
-                </a>
-              ))}
+              <Typography component='span' color='textSecondary'>
+                Written by{' '}
+                {crtPost.authors.map(author => (
+                  <Typography key={author.id} href={author.link} component='a' color='textPrimary'>
+                    {author.name}{' '}
+                  </Typography>
+                ))}
+              </Typography>
             </Typography>
-            <Typography variant='subtitle2' className={classes.meta}>
+
+            <Typography variant='subtitle1' className={classes.meta}>
+              <Typography component='span' color='textSecondary'>
+                Updated{' '}
+              </Typography>
               {new Date(crtPost.date).toLocaleString('en-AU', {
                 year: 'numeric',
-                month: 'long',
+                month: 'short',
                 day: 'numeric',
               })}
             </Typography>
+            <div className={classes.featuredMedia}>
+              <picture>
+                <source media='(max-width: 480px)' srcSet={crtPost.featuredMedia.medium_large} />
+                <source media='(max-width: 768px)' srcSet={crtPost.featuredMedia.medium} />
+                <source media='(max-width: 1024px)' srcSet={crtPost.featuredMedia.medium_large} />
+                <source media='(max-width: 1280px)' srcSet={crtPost.featuredMedia.full} />
+                <img alt='Top article' src={crtPost.featuredMedia.full}></img>
+              </picture>
+            </div>
+
             <Typography
               dangerouslySetInnerHTML={{ __html: crtPost.content }}
               variant='body1'

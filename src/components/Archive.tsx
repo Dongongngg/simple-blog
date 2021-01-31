@@ -1,3 +1,4 @@
+//archive component to display all articles in a list
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 //mui

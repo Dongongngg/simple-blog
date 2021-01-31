@@ -86,7 +86,7 @@ import { CssBaseline } from '@material-ui/core/';
 // ];
 const App: React.FC = () => {
   const [posts, setPosts] = useState<Post[] | void>([]);
-
+  // get all posts and store them in context
   useEffect(() => {
     const getAll = async (): Promise<Post[] | void> => {
       const res = await getPosts();

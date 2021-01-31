@@ -7,7 +7,7 @@ import { Post, rawPost } from '../interfaces/blog';
 export const getPosts = async (): Promise<Post[] | void> => {
   try {
     const rawPosts = await axios.get('https://hammer.forexco.com.au/wp-json/wp/v2/posts?_embed');
-    //destructure data
+    //destructuring data
     //get each post content
     const posts: Post[] = rawPosts.data.map((e: rawPost) => ({
       id: e.id,

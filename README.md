@@ -1,10 +1,15 @@
-# Simple Blog
+# SimpleBlog
 
-A blog to display articles
+A blog that fetch content from an API to display all the posts.
+Live view: https://sharp-ramanujan-84a1e6.netlify.app/
 
 ## Tech
 
-React | TypeScript | Material UI | Axios
+React, React Router, TypeScript, Material UI, Axios
+
+### Tool
+
+ESLint, Prettier
 
 ## Available Scripts
 

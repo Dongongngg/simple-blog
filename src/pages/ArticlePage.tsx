@@ -57,6 +57,7 @@ const ArticlePage: React.FC = () => {
   const [crtPost, setCrtPost] = useState<Post>();
   const [notFound, setNotFound] = useState<boolean>(false);
 
+  //find current page from context by params of url
   useEffect(() => {
     if (posts && posts.length > 0) {
       const post = posts.find(e => e.id == articleId);

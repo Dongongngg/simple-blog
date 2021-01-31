@@ -1,3 +1,4 @@
+//Listen on history so every time redirect scroll to top of the page
 import React, { useEffect } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 

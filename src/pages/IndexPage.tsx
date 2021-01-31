@@ -32,13 +32,13 @@ const useStyles = makeStyles(theme => ({
 
   subtitleWrapper: {
     height: '16vh',
-    marginBottom: '8vh',
+    marginBottom: '4vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     borderBottom: ' 1px solid #CCCCCC',
     '@media (max-width: 960px)': {
-      marginBottom: '4vh',
+      marginBottom: '2vh',
       maxWidth: '90vw',
     },
   },
@@ -75,7 +75,7 @@ const IndexPage: React.FC = () => {
 
   const [topPosts, setTopPosts] = useState<Post[]>([]);
 
-  //get 4 latest posts
+  //get 4 latest post, reorder by date
   useEffect(() => {
     if (posts) {
       setTopPosts(posts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date)).slice(0, 4));
@@ -95,7 +95,7 @@ const IndexPage: React.FC = () => {
                 <BlogSVG />
               </Container>
             </section>
-            {/* latest article section */}
+            {/* logo */}
             <section className={classes.sectionWrapper}>
               <Container className={classes.bannerWrapper} maxWidth={false}>
                 <Typography variant='h1' style={{ padding: '2vh' }}>
@@ -105,6 +105,9 @@ const IndexPage: React.FC = () => {
                   Everyday forex post.
                 </Typography>
               </Container>
+            </section>
+            {/* latest(top) article section */}
+            <section className={classes.sectionWrapper}>
               <Container className={classes.subtitleWrapper}>
                 <Typography variant='h2' color='primary'>
                   Latest Articles
@@ -137,6 +140,7 @@ const IndexPage: React.FC = () => {
                       <Grid item xs={12} key={post.id}>
                         <article className={classes.article}>
                           <Grid container>
+                            {/*  title for < md */}
                             <Hidden only={['md', 'lg', 'xl']}>
                               <Link to={'/article/' + post.id}>
                                 <Typography gutterBottom variant='h6' component='h2' display='inline'>
@@ -146,6 +150,7 @@ const IndexPage: React.FC = () => {
                             </Hidden>
                             {/* title and excerpt */}
                             <Grid item xs={8}>
+                              {/*  title for > md */}
                               <Hidden only={['xs']}>
                                 <Link to={'/article/' + post.id}>
                                   <Typography gutterBottom variant='h6' component='h2' display='inline'>

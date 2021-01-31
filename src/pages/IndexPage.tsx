@@ -28,8 +28,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    marginTop: theme.spacing(2),
-    marginDown: theme.spacing(2),
   },
 
   subtitleWrapper: {
@@ -44,7 +42,7 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '90vw',
     },
   },
-  section: {
+  sectionWrapper: {
     marginBottom: '8vh',
     '@media (max-width: 960px)': {
       marginBottom: '4vh',
@@ -81,7 +79,6 @@ const IndexPage: React.FC = () => {
   useEffect(() => {
     if (posts) {
       setTopPosts(posts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date)).slice(0, 4));
-      console.log(topPosts);
     }
   }, [posts]);
 
@@ -93,11 +90,13 @@ const IndexPage: React.FC = () => {
         ) : (
           <>
             {/* hero img */}
-            <section className={classes.hero}>
-              <BlogSVG />
+            <section className={classes.sectionWrapper}>
+              <Container className={classes.hero} maxWidth='md'>
+                <BlogSVG />
+              </Container>
             </section>
             {/* latest article section */}
-            <section className={classes.section}>
+            <section className={classes.sectionWrapper}>
               <Container className={classes.bannerWrapper} maxWidth={false}>
                 <Typography variant='h1' style={{ padding: '2vh' }}>
                   SimpleBlog
@@ -125,7 +124,7 @@ const IndexPage: React.FC = () => {
               </Container>
             </section>
             {/* more article section */}
-            <section className={classes.section}>
+            <section className={classes.sectionWrapper}>
               <Container className={classes.subtitleWrapper}>
                 <Typography variant='h2' color='primary'>
                   More Articles
@@ -145,6 +144,7 @@ const IndexPage: React.FC = () => {
                                 </Typography>
                               </Link>
                             </Hidden>
+                            {/* title and excerpt */}
                             <Grid item xs={8}>
                               <Hidden only={['xs']}>
                                 <Link to={'/article/' + post.id}>
@@ -165,6 +165,7 @@ const IndexPage: React.FC = () => {
                                 {post.excerpt.replace(/<\/?[^>]+>/gi, '')}
                               </Typography>
                             </Grid>
+                            {/* feature img */}
                             <Grid item xs={4} className={classes.featuredImgWrapper}>
                               {post.featuredMedia.full === 'none' ? (
                                 <ArticleMediaSVG />

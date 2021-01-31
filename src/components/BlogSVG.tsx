@@ -4,11 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyle = makeStyles({
   svgWrapper: {
-    textAlign: 'center',
-    width: '50%',
-    '@media (max-width: 780px)': {
-      width: '100%',
-    },
+    width: '100%',
   },
 });
 
